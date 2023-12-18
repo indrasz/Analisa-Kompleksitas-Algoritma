@@ -16,7 +16,7 @@ function areArraysEqualOptimized(n, m) {
 }
 
 const startTimeOptimized = performance.now();
-const kata3 = ['c'];
+const kata3 = ['a'];
 const kata4 = ['a'];
 console.log(areArraysEqualOptimized(kata3, kata4));
 const endTimeOptimized = performance.now();

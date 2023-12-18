@@ -13,8 +13,8 @@ function areArraysEqualNaive(n, m) {
 }
 
 const startTimeNaive = performance.now();
-const kata1 = ['a', 'b', 'd'];
-const kata2 = ['a', 'b', 'd'];
+const kata1 = ['a', 'b', 'c', 'd'];
+const kata2 = ['a', 'b', 'c', 'd'];
 console.log(areArraysEqualNaive(kata1, kata2));
 const endTimeNaive = performance.now();
 console.log(`Algoritma pertama = Waktu eksekusi Algoritma Naive: ${endTimeNaive - startTimeNaive} milidetik`);
