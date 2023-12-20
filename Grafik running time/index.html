@@ -17,100 +17,157 @@
 </head>
 
 <body>
-    <section class="px-5 py-2">
-        <button id="runAlgorithm" class="btn btn-primary text-center p-3">Run Algorithm</button>
-    </section>
-
-    <div class="p-5">
-        <canvas id="myChart" width="400" height="200"></canvas>
-    </div>
+    <canvas id="runningTimeChart" width="400" height="200"></canvas>
 
     <script>
-        const ctx = document.getElementById('myChart').getContext('2d');
+        // const executionTimesAlgorithm1 = [];
+        // const executionTimesAlgorithm2 = [];
 
+        // function compareWordsAlgorithm1(input1, input2) {
+        //     const words1 = input1.split(' ');
+        //     const words2 = input2.split(' ');
+
+        //     console.time("Algorithm 1"); // Mulai mengukur waktu
+
+        //     for (let i = 0; i < words1.length; i++) {
+        //         for (let j = 0; j < words2.length; j++) {
+        //             if (words1[i] === words2[j]) {
+        //                 console.timeEnd("Algorithm 1"); // Akhiri pengukuran waktu
+        //                 return true; // Temukan kata yang sama, langsung kembalikan true
+        //             }
+        //         }
+        //     }
+
+        //     console.timeEnd("Algorithm 1"); // Akhiri pengukuran waktu
+        //     executionTimesAlgorithm1.push(console.timeEnd("Algorithm 1"));
+        //     return false; // Tidak ada kata yang sama
+        // }
+
+
+        // function compareWordsAlgorithm2(input1, input2) {
+        //     const words1 = new Set(input1.split(' '));
+        //     const words2 = new Set(input2.split(''));
+
+        //     console.time("Algorithm 2"); // Mulai mengukur waktu
+
+        //     // Membuat Set yang berisi kata-kata yang sama antara words1 dan words2
+        //     const commonWords = new Set([...words1].filter(word => words2.has(word)));
+
+        //     console.timeEnd("Algorithm 2"); // Akhiri pengukuran waktu
+        //     executionTimesAlgorithm2.push(console.timeEnd("Algorithm 2"));
+        //     return commonWords.size > 0; // Return true jika ada kata yang sama, false jika tidak
+        // }
+
+        const executionTimesAlgorithm1 = [];
+        const executionTimesAlgorithm2 = [];
+
+        function compareWordsAlgorithm1(input1, input2) {
+            const startTime = performance.now();
+
+            for (let i = 0; i < input1.length; i++) {
+                for (let j = 0; j < input2.length; j++) {
+                    if (input1[i] === input2[j]) {
+                        const endTime = performance.now();
+                        executionTimesAlgorithm1.push(endTime - startTime);
+                        console.log("Result Algorithm 1:", true);
+                        console.log("Time taken by Algorithm 1:", endTime - startTime, "milliseconds");
+                        return true;
+                    }
+                }
+            }
+
+            const endTime = performance.now();
+            executionTimesAlgorithm1.push(endTime - startTime);
+            console.log("Result Algorithm 1:", false);
+            console.log("Time taken by Algorithm 1:", endTime - startTime, "milliseconds");
+            
+            return false;
+        }
+
+        function compareWordsAlgorithm2(input1, input2) {
+            const startTime = performance.now();
+
+            const set1 = new Set(input1);
+            const set2 = new Set(input2);
+
+            const commonWords = new Set([...set1].filter(word => set2.has(word)));
+
+            const endTime = performance.now();
+            const result = commonWords.size > 0;
+            executionTimesAlgorithm2.push(endTime - startTime);
+
+            console.log("Result Algorithm 2:", result);
+            console.log("Time taken by Algorithm 2:", endTime - startTime, "milliseconds");
+            
+            return result;
+        }
+
+        // Contoh penggunaan
+        const input1 = ["saya", "suka", "dengan", "anda", "sebagainya"];
+        const input2 = ["aku", "dan", "kamu", "tidak", "cocok", "anda"];
+
+        const input3 = ["saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya"];
+        const input4 = ["aku", "dan", "kamu", "tidak", "cocok", "aku", "dan", "kamu", "tidak", "cocok", "anda"];
+
+        const input5 = ["saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya"];
+        const input6 = ["aku", "dan", "kamu", "tidak", "cocok", "aku", "anda", "dan", "kamu", "tidak", "cocok", "aku", "dan", "kamu", "tidak", "cocok"];
+
+        const input7 = ["saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya"];
+        const input8 = ["aku", "dan", "kamu", "tidak", "cocok", "aku", "dan", "anda", "kamu", "tidak", "cocok", "aku", "dan", "kamu", "tidak", "cocok", "aku", "dan", "kamu", "tidak", "cocok"];
+
+        const input9 = ["saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya", "saya", "suka", "dengan", "anda", "sebagainya"];
+        const input10 = ["aku", "dan", "kamu", "tidak", "cocok", "aku", "dan", "anda", "kamu", "tidak", "cocok", "aku", "dan", "kamu", "tidak", "cocok", "aku", "dan", "kamu", "tidak", "cocok", "aku", "dan", "kamu", "tidak", "cocok"];
+
+        compareWordsAlgorithm1(input1, input2);
+        compareWordsAlgorithm2(input1, input2);
+        console.log("====================================");
+        compareWordsAlgorithm1(input3, input4);
+        compareWordsAlgorithm2(input3, input4);
+        console.log("====================================");
+        compareWordsAlgorithm1(input5, input6);
+        compareWordsAlgorithm2(input5, input6);
+        console.log("====================================");
+        compareWordsAlgorithm1(input7, input8);
+        compareWordsAlgorithm2(input7, input8);
+        console.log("====================================");
+        compareWordsAlgorithm1(input9, input10);
+        compareWordsAlgorithm2(input9, input10);
+
+        // Buat sebuah elemen canvas di HTML Anda
+        const canvas = document.createElement('canvas');
+        document.body.appendChild(canvas);
+        const ctx = canvas.getContext('2d');
+
+        // Buat sebuah grafik dengan Chart.js
         const chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [],
-                datasets: [{
-                    label: 'Running Time',
-                    data: [],
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1,
-                    tension: 0.4 
-                }]
+                labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
+                datasets: [
+                    {
+                        label: 'Algorithm 1',
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1,
+                        data: executionTimesAlgorithm1,
+                    },
+                    {
+                        label: 'Algorithm 2',
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1,
+                        data: executionTimesAlgorithm2,
+                    },
+                ],
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
-                    }
+                        beginAtZero: true,
+                    },
                 },
-                animation: {
-                    onComplete: function () {
-                        console.log('Chart Animation Complete');
-                    }
-                }
-            }
+            },
         });
-
-        document.getElementById('runAlgorithm').addEventListener('click', function () {
-            const panjangArray1 = [10, 50, 100, 500, 1000];
-            const panjangArray2 = [20, 80, 160, 800, 1600];
-
-            const labels = [];
-            const executionTimes = [];
-
-            for (let i = 0; i < panjangArray1.length; i++) {
-                const result = checkEquality(panjangArray1[i], panjangArray2[i]);
-
-                labels.push(`Data ${i + 1}`);
-                executionTimes.push(result.executionTime);
-            }
-
-            console.log('Execution Times:', executionTimes);
-
-            chart.data.labels = labels;
-            chart.data.datasets[0].data = executionTimes;
-
-            chart.update();
-        });
-
-        function generateRandomLetter() {
-            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const randomIndex = Math.floor(Math.random() * alphabet.length);
-            return alphabet[randomIndex];
-        }
-
-        function checkEquality(panjangArray1, panjangArray2) {
-            if (panjangArray1 <= 0 || panjangArray2 <= 0) {
-                return { hasSameLetters: false, executionTime: 0, errorMessage: 'Panjang array harus lebih dari 0.' };
-            }
-
-            const result1 = [];
-            const result2 = [];
-
-            const startTime = performance.now();
-
-            for (let i = 0; i < panjangArray1; i++) {
-                const letter1 = generateRandomLetter();
-                result1.push(letter1);
-            }
-
-            for (let i = 0; i < panjangArray2; i++) {
-                const letter2 = generateRandomLetter();
-                result2.push(letter2);
-            }
-
-            const hasSameLetters = result1.some(letter => result2.includes(letter));
-
-            const endTime = performance.now();
-
-            const executionTime = endTime - startTime;
-
-            return { hasSameLetters, executionTime, errorMessage: '' };
-        }
     </script>
 
 </body>
