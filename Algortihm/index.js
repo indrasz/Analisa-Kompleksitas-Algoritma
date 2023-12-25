@@ -21,17 +21,24 @@ function compareWordsAlgorithm1(input1, input2) {
 function compareWordsAlgorithm2(input1, input2) {
     const startTime = performance.now();
 
-    const set1 = new Set(input1);
-    const set2 = new Set(input2);
+    let result = false;
 
-    const commonWords = new Set([...set1].filter(word => set2.has(word)));
+    for (let i = 0; i < input1.length; i++) {
+        if (input2.includes(input1[i])) {
+            result = true;
+            break;
+        }
+    }
 
     const endTime = performance.now();
-    const result = commonWords.size > 0;
-    console.log("Result Algorithm 2:", result);
-    console.log("Time taken by Algorithm 2:", endTime - startTime, "milliseconds");
+
+    console.log("Result Using Includes:", result);
+    console.log("Time taken by Includes Method:", endTime - startTime, "milliseconds");
+
     return result;
 }
+
+
 
 // Contoh penggunaan
 const input1 = ["saya", "suka", "dengan", "anda", "sebagainya"];
